@@ -1,0 +1,27 @@
+000 (226991372.000.000) 2025-03-12 13:32:34 Job submitted from host: <10.128.11.86:25462?addrs=10.128.11.86-25462&alias=submit-1.icecube.wisc.edu>
+    DAG Node: make_pickle
+...
+001 (226991372.000.000) 2025-03-12 13:49:51 Job executing on host: <10.128.10.189:52767?addrs=10.128.10.189-52767&alias=n-166.icecube.wisc.edu>
+...
+005 (226991372.000.000) 2025-03-12 15:39:36 Job terminated.
+	(1) Normal termination (return value 0)
+		Usr 0 00:06:46, Sys 0 00:07:04  -  Run Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Run Local Usage
+		Usr 0 00:06:46, Sys 0 00:07:04  -  Total Remote Usage
+		Usr 0 00:00:00, Sys 0 00:00:00  -  Total Local Usage
+	3961  -  Run Bytes Sent By Job
+	390  -  Run Bytes Received By Job
+	3961  -  Total Bytes Sent By Job
+	390  -  Total Bytes Received By Job
+	Partitionable Resources :    Usage  Request Allocated 
+	   admin_mutex_1         :                           0 
+	   admin_mutex_2         :                           0 
+	   admin_mutex_3         :                           0 
+	   Cpus                  :     0.98        1         1 
+	   Disk (KB)             :    73     1000000   1232215 
+	   GPUs                  :                           0 
+	   machine_token         :                           0 
+	   Memory (MB)           : 79725      102400    102400 
+
+	Job terminated of its own accord at 2025-03-12T20:39:36Z.
+...

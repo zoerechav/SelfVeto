@@ -1,0 +1,25 @@
+#Stage shebang script and GridFTP certificate to the node.
+# # The executable itself will always be staged if the node is
+# # on a different filesystem.
+
+should_transfer_files = YES
+
+transfer_input_files =/home/zrechav/SelfVeto_Correlation_Tables/scripts/compiling/OutputFileCompiler_NPX.sh 
+
++TransferOutput="" 
+
+executable = /home/zrechav/SelfVeto_Correlation_Tables/scripts/compiling/OutputFileCompiler_NPX.sh 
+output = /scratch/zrechav/hdf_compiler/hdf_compiler_.out 
+error = /scratch/zrechav/hdf_compiler/hdf_compiler_.err
+log = /scratch/zrechav/hdf_compiler/hdf_compiler_.log
+
+universe = vanilla 
+notification = never 
+
+ 
+
+request_memory = 8000MB
+
+arguments =  -i$(infile) -o$(outfile) 
+
+queue

@@ -1,0 +1,28 @@
+#Stage shebang script and GridFTP certificate to the node.
+# # The executable itself will always be staged if the node is
+# # on a different filesystem.
+should_transfer_files = YES
+transfer_input_files = /home/zrechav/SelfVeto_Correlation_Tables/scripts/picklemaking/npy_maker.sh
+# # but do not try to copy outputs back (see: https://htcondor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3081)
++TransferOutput=""
+
+executable = /home/zrechav/SelfVeto_Correlation_Tables/scripts/picklemaking/npy_maker.sh
+
+output = /scratch/zrechav/misc/npy_maker.out
+error = /scratch/zrechav/misc/npy_maker.err
+log = /scratch/zrechav/misc/npy_maker.log
+
+universe = vanilla
+notification = never
+
+#+AccountingGroup = "1_week.$ENV(USER)"
+#+AccountingGroup="uwa.$ENV(USER)"
+Requirements = (OpSysMajorVer == 7 || OSGVO_OS_VERSION == 7)
++SingularityImage="/cvmfs/singularity.opensciencegrid.org/opensciencegrid/osgvo-el7:latest"
+request_memory = 100GB
+
+
+
+arguments = $(infile)   
+
+queue

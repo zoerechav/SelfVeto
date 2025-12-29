@@ -1,0 +1,3 @@
+JOB make_sampled_corsika_hdf /home/zrechav/SelfVeto_Correlation_Tables/scripts/compiling/make_sampled_corsika_hdf.sub
+VARS make_sampled_corsika_hdf infile="/data/user/zrechav/airshowered_corsika/22803/0014000-0014999/" outfile="/data/ana/Diffuse/DNNCascades_Diffuse/Corsika_Temp/22803_0014000-0014999_unweighted.hdf5" 
+Retry make_sampled_corsika_hdf 2

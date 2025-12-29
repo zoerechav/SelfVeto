@@ -1,0 +1,176 @@
+chain_name: atmospheric_neutrinos
+seed: 4815
+
+# Number of the dataset
+dataset_number: 22613
+# Events generated for each file
+n_events_per_run: 3000
+# Number of total runs/file
+n_runs: 4000
+
+# sub-dict to indicate need resources
+resources:
+  # Indication which steps need GPUs, default is 0
+  gpus:
+    1: 1
+  # Indication of needed memory for each step if nothing is set 1GB is assumed as default
+  memory:
+    0: 6gb
+    1: 14gb
+    2: 6gb
+    3: 6gb
+    4: 6gb
+    5: 6gb
+  # Indication of the walltime (in hours) for each step, if nothing is set the system default for dagman and 1h for pbs are assumed
+  walltime:
+  # Indication of the number of cores for each step, default is 1
+  cpus:
+    1: 1
+
+# --------------------
+# Step 0: Event Import
+# --------------------
+
+# Settings to define file and event imports
+event_import_settings:
+
+    # Define list of input file patterns
+    # This should be a str or a list of str
+    # For each file pattern: file_pattern.format(run_number=run_number) is called
+    # This may be used to define input files for different run numbers.
+
+    input_file_glob_list: [
+     #'/data/ana/Diffuse/DNNCascades_Diffuse/version-1.0/DNNCascadeL5/version-001-p01/NuGen/22613/0000000-0000999/DNNCascades_Diffuse_L5_22613_',
+    '/data/ana/Diffuse/DNNCascades_Diffuse/version-1.0/DNNCascadeL5/version-001-p01/NuGen/22613/0001000-0001999/DNNCascades_Diffuse_L5_22613_00001' ##must be this format
+
+    ]
+
+    # Run Folder Logic
+    # The following variables are available and can be used in input/output patterns
+    # folder_num = folder_offset + run_number//1000
+    # folder_num_pre_offset = run_number//1000
+    # run_folder = folder_pattern.format(**{...})
+    folder_offset: 0
+    folder_pattern: '{folder_num_pre_offset:04d}000-{folder_num_pre_offset:04d}999'
+
+    # name of I3MCTree to import
+    mctree_name: 'I3MCTree'
+
+    # keys to import from files
+    keys_to_import: [
+      'I3MCWeightDict',
+      'MMCTrackList',
+      'OldRunNumber',
+      'OldEventID',
+      'cc', #true neutrino information from PreferredFit reconstruction
+      'BDT_bdt_max_depth_4_n_est_1000lr_0.01_seed_3_train_size_50', #BDT 1
+      'BDT_bdt_max_depth_4_n_est_2000lr_0_02_seed_3_train_size_50', #BDT 2
+
+    ]
+
+    # keys to rename
+    rename_dict: {
+    }
+
+# Define Settings for Muon injection
+veto_muon_injection_config: {
+
+  'n_frames_per_neutrino': 10,
+  'sampling_settings': {
+      'method': 'power_law',
+      'range': [10, !!float 1e6],
+      'gamma': 1.5,
+  },
+}
+
+# Bias Simulation
+ApplyBaseSimulationBias: True
+BaseSimulationBiasSettings: {
+    'bias_function': 'DowngoingFirstPrimary',
+    'bias_function_kwargs': {
+        'cos_zenith_sigmoid_scale': 0.003,
+        'cos_zenith_sigmoid_bias': 0.05,
+    },
+    'lower_probability_bound': !!float 1e-16, ## basically never sample these
+    'keep_all_events': False,
+    'verbose': False,
+}
+
+# MuonPropagation specific options
+muon_propagation_config : {}
+
+# -----------------------------
+# Step 1: Snowstorm Propagation
+# -----------------------------
+MCTreeName: CombinedMuonVetoI3MCTree
+NumEventsPerModel: 100
+DOMOversizeFactor: 5.
+UseI3PropagatorService: False
+UseGPUs: True
+SummaryFile:
+
+# These arguments will be passed on to the CLSIM Client Module
+ExtraArgumentsToI3CLSimClientModule:
+  # Sources with no DOMs within this distance (meter) are *not* simulated
+  ClosestDOMDistanceCutoff: 500.
+
+# Snowstorm Configuration
+snowstorm_config:
+  # Config for the full-scale systematics dataset
+  # (after alignment with the calibration group)
+  # baseline ice-model and hole-ice parametrization
+  #IceModelLocation: "$I3_BUILD/ice-models/spice_3.2.1"
+  IceModelLocation: "$I3_BUILD/ice-models/resources/models/ICEMODEL/spice_ftp-v3"
+  #HoleIceParameterization: "$I3_BUILD/ice-models/resources/models/angsens/as.flasher_p1_0.30_p2_-1"
+  #IceModelLocation: "$I3_BUILD/ice-models/resources/models/spice_3.2.1"
+  #HoleIceParameterization: "$I3_BUILD/ice-models/resources/models/angsens/as.flasher_p1_0.30_p2_-1"
+  HoleIceParameterization: '$I3_BUILD/ice-models/resources/models/ANGSENS/angsens/as.flasher_p1_0.35_p2_0'
+  # Control ice model perturbations:
+  Perturbations:
+      # IceWavePlusModes for depth dependent absorption/scattering scaling
+      IceWavePlusModes:
+          apply: False
+          type: default
+      # Global ice scattering scaling
+      Scattering:
+          type: uniform
+          uniform:
+              limits: [[0.9, 1.1]]
+      # Global ice absorption scaling
+      Absorption:
+          type: uniform
+          uniform:
+              limits: [[0.9, 1.1]]
+      # Ice anisotropy scaling
+#       AnisotropyScale:
+#          type: uniform
+#          uniform:
+#              limits: [[0., 2.0]]
+      # DOM efficiency scaling
+      DOMEfficiency:
+          type: uniform
+          uniform:
+              limits: [[0.9, 1.1]]
+
+      # DOM angular acceptance according to the Unified HoleIce model
+      # see: https://github.com/philippeller/angular_acceptance
+      HoleIceForward_Unified:
+          type: uniform
+          uniform:
+                  # limits: [[-0.65, 0.60], [-0.08, 0.08]]
+                  #limits: [[-1.00, 1.00], [-0.2, 0.2]]
+                  limits: [[-0.1, 0.6], [-0.12, 0.0]]
+
+# -----------------------------
+# Step 2: Detector Simulation
+# -----------------------------
+# keep MCPEs in frame
+det_keep_mc_hits: False
+# keep I3MCPulseSeriesMap in frame.
+det_keep_mc_pulses: False
+# Keep everything upto run X
+det_pass2_keep_all_upto: -1
+# keep MCTree with all in-ice propagated secondaries. These take a lot of space compared un propagated tree.
+det_keep_propagated_mc_tree: True
+
+

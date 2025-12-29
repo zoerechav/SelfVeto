@@ -1,0 +1,88 @@
+##Bins
+#E_nu_bins: "np.logspace(3,8,12+1)"
+#E_nu_bins: "np.array([1e3,5e3,1e4,10**4.2,10**4.3,10**4.4,10**4.5,10**4.6,1e5, 1e8])"
+#E_nu_bins: "np.array([1e3,2e3,4e3,6.3e3,1e4,2e4,1e6,1e8])"
+E_nu_bins: "np.array([1e3,2e3,4e3,6.3e3,1e4,2e4,1e8])"
+nu_bin_centers: "np.sqrt(E_nu_bins[:-1] * E_nu_bins[1:])"
+
+#E_mu_bins: "np.logspace(1,7,12+1)"
+#E_mu_bins: "((np.logspace(1,8,8+1)))"
+#E_mu_bins: "np.array([1e3,5e3,1e4,5e4,1e5,1e8])"
+#E_mu_bins: "np.array([1e3,5e3,1e4,10**4.2,10**4.3,10**4.4,10**4.5,10**4.6,1e5, 1e8])"
+E_mu_bins: "np.array([1e1,1e2,1e3,3e3,1e4,1e8])"
+mu_bin_centers: "np.sqrt(E_mu_bins[:-1] * E_mu_bins[1:])"
+
+#gridpts_mu: "((np.logspace(1,6,8+1)))"
+#gridpts_nu: "np.concatenate((np.logspace(1,2,1),np.logspace(2,6,8+1)))"
+
+flavours: ['NuE','NuMu']
+nue_angles: "np.array([0.,0.4,0.55,0.70,0.85,1.])"
+numu_angles: "np.linspace(0,1.0,6)"
+angles: "np.linspace(0,1.0,6)"
+#depths: "np.concatenate([np.linspace(1.40,2.0,2),np.linspace(2.1,2.5,2)])"
+depths: "np.array([1.4,1.6,2.0,2.1,2.7])"
+mult_bins: "np.linspace(0,5,5+1)"
+##Filepaths
+corsika_sample: '/data/ana/Diffuse/DNNCascades_Diffuse/Corsika_Temp/combined/22803_0000000-0019999_correlated.hdf5'
+gcd: '/cvmfs/icecube.opensciencegrid.org/data/GCD/GeoCalibDetectorStatus_2020.Run134142.Pass2_V0.i3.gz'
+
+nfiles: "20000"
+
+flavour_mask_NuE_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/Flavour_mask_NuE.npy'
+flavour_mask_NuMu_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/Flavour_mask_NuMu.npy'
+flavour_mask_NuTau_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/Flavour_mask_NuTau.npy'
+single_muon_mask_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/SingleMuonMask.npy'
+double_muon_mask_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/DoubleMuonMask.npy'
+triple_muon_mask_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/TripleMuonMask.npy'
+quad_muon_mask_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/QuadrupleMuonMask.npy'
+
+angle_masks_base_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/Angle_mask_'
+depth_masks_base_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/Depth_mask_'
+flavour_masks_base_path: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/masked_pickles/Flavour_mask_'
+
+#histogram output directories
+single_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/histograming/1D/'
+double_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/histograming/2D/'
+triple_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/histograming/3D/'
+quad_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/histograming/4D/'
+
+#spline output directories
+single_splines_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/splining/1D/'
+double_splines_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/splining/2D/'
+triple_splines_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/splining/3D/'
+
+##multiplicity output directories
+multi_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/multiplicity_mapping/'
+
+#normalized histogram output directories
+norm_single_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/histograming/1D/'
+norm_double_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/histograming/2D/'
+norm_triple_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/histograming/3D/'
+norm_quad_hists_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/histograming/4D/'
+
+#normalized spline output directories
+norm_single_splines_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/splining/1D/'
+norm_double_splines_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/splining/2D/'
+norm_triple_splines_base: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/normalized/splining/3D/'
+
+
+#numpy output directories
+Zenith_Shower_Neutrino: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Zenith_Shower_Neutrino.npy'
+Flavour_Shower_Neutrino: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Flavour_Shower_Neutrino.npy'
+Energy_Shower_Neutrino: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Energy_Shower_Neutrino.npy'
+Depth_Shower_Neutrino: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Depth_Shower_Neutrino.npy'
+MuonMultiplicity: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/MuonMultiplicity.npy'
+Muon_Energy_L1: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Energy_L1.npy'
+Muon_Energy_L2: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Energy_L2.npy'
+Muon_Energy_L3: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Energy_L3.npy'
+Muon_Energy_L4: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Energy_L4.npy'
+Muon_Zenith_L1: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Zenith_L1.npy'
+Muon_Zenith_L2: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Zenith_L2.npy'
+Muon_Zenith_L3: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Zenith_L3.npy'
+Muon_Zenith_L4: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Zenith_L4.npy'
+Muon_Depth_L1: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Depth_L1.npy'
+Muon_Depth_L2: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Depth_L2.npy'
+Muon_Depth_L3: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Depth_L3.npy'
+Muon_Depth_L4: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Muon_Depth_L4.npy'  
+Total_Muon_energy: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Total_Muon_energy.npy'
+Weights: '/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/Weights.npy'

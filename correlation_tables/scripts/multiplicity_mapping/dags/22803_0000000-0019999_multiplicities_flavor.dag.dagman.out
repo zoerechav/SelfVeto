@@ -1,0 +1,256 @@
+03/12/25 20:17:40 Setting maximum file descriptors to 80000.
+03/12/25 20:17:40 ******************************************************
+03/12/25 20:17:40 ** condor_scheduniv_exec.227010052.0 (CONDOR_DAGMAN) STARTING UP
+03/12/25 20:17:40 ** /usr/bin/condor_dagman
+03/12/25 20:17:40 ** SubsystemInfo: name=DAGMAN type=DAGMAN(10) class=DAEMON(1)
+03/12/25 20:17:40 ** Configuration: subsystem:DAGMAN local:<NONE> class:DAEMON
+03/12/25 20:17:40 ** $CondorVersion: 8.9.11 Dec 28 2020 BuildID: 526068 PackageID: 8.9.11-1 $
+03/12/25 20:17:40 ** $CondorPlatform: x86_64_CentOS7 $
+03/12/25 20:17:40 ** PID = 129356
+03/12/25 20:17:40 ** Log last touched time unavailable (No such file or directory)
+03/12/25 20:17:40 ******************************************************
+03/12/25 20:17:40 Using config source: /etc/condor/condor_config
+03/12/25 20:17:40 Using local config sources: 
+03/12/25 20:17:40    /etc/condor/config.d/00_logging
+03/12/25 20:17:40    /etc/condor/config.d/00_security
+03/12/25 20:17:40    /etc/condor/config.d/20_ganglia
+03/12/25 20:17:40    /etc/condor/config.d/20_master_daemons
+03/12/25 20:17:40    /etc/condor/config.d/20_schedd
+03/12/25 20:17:40    /etc/condor/config.d/20_schedd_limit_num_jobs
+03/12/25 20:17:40    /etc/condor/config.d/20_schedd_stats
+03/12/25 20:17:40    /etc/condor/config.d/20_schedd_stats_rss
+03/12/25 20:17:40    /etc/condor/config.d/20_shared_port
+03/12/25 20:17:40    /etc/condor/config.d/20_submit
+03/12/25 20:17:40    /etc/condor/config.d/21_submit_singularity
+03/12/25 20:17:40    /etc/condor/config.d/60_npx_group_requirement
+03/12/25 20:17:40    /usr/local/libexec/condor/sanctioned_users.py |
+03/12/25 20:17:40    /etc/condor/config.d/60_npx_sanctioned_queue
+03/12/25 20:17:40    /etc/condor/config.d/60_npx_submit
+03/12/25 20:17:40    /etc/condor/config.d/60_npx_submit_sane_reqs
+03/12/25 20:17:40    /etc/condor/config.d/60_npx_validate_accounting_groups
+03/12/25 20:17:40    /etc/condor/config.d/99_block_submissions_group_long
+03/12/25 20:17:40    /etc/condor/condor_config.local
+03/12/25 20:17:40 config Macros = 157, Sorted = 157, StringBytes = 8662, TablesBytes = 5844
+03/12/25 20:17:40 CLASSAD_CACHING is ENABLED
+03/12/25 20:17:40 Daemon Log is logging: D_ALWAYS D_ERROR
+03/12/25 20:17:40 DaemonCore: No command port requested.
+03/12/25 20:17:40 DAGMAN_USE_STRICT setting: 1
+03/12/25 20:17:40 DAGMAN_VERBOSITY setting: 3
+03/12/25 20:17:40 DAGMAN_DEBUG_CACHE_SIZE setting: 5242880
+03/12/25 20:17:40 DAGMAN_DEBUG_CACHE_ENABLE setting: False
+03/12/25 20:17:40 DAGMAN_SUBMIT_DELAY setting: 1
+03/12/25 20:17:40 DAGMAN_MAX_SUBMIT_ATTEMPTS setting: 6
+03/12/25 20:17:40 DAGMAN_STARTUP_CYCLE_DETECT setting: False
+03/12/25 20:17:40 DAGMAN_MAX_SUBMITS_PER_INTERVAL setting: 100
+03/12/25 20:17:40 DAGMAN_AGGRESSIVE_SUBMIT setting: False
+03/12/25 20:17:40 DAGMAN_USER_LOG_SCAN_INTERVAL setting: 5
+03/12/25 20:17:40 DAGMAN_QUEUE_UPDATE_INTERVAL setting: 300
+03/12/25 20:17:40 DAGMAN_DEFAULT_PRIORITY setting: 0
+03/12/25 20:17:40 DAGMAN_SUPPRESS_NOTIFICATION setting: True
+03/12/25 20:17:40 allow_events (DAGMAN_ALLOW_EVENTS) setting: 114
+03/12/25 20:17:40 DAGMAN_RETRY_SUBMIT_FIRST setting: True
+03/12/25 20:17:40 DAGMAN_RETRY_NODE_FIRST setting: False
+03/12/25 20:17:40 DAGMAN_MAX_JOBS_IDLE setting: 1000
+03/12/25 20:17:40 DAGMAN_MAX_JOBS_SUBMITTED setting: 0
+03/12/25 20:17:40 DAGMAN_MAX_PRE_SCRIPTS setting: 20
+03/12/25 20:17:40 DAGMAN_MAX_POST_SCRIPTS setting: 20
+03/12/25 20:17:40 DAGMAN_MAX_HOLD_SCRIPTS setting: 20
+03/12/25 20:17:40 DAGMAN_MUNGE_NODE_NAMES setting: True
+03/12/25 20:17:40 DAGMAN_PROHIBIT_MULTI_JOBS setting: False
+03/12/25 20:17:40 DAGMAN_SUBMIT_DEPTH_FIRST setting: False
+03/12/25 20:17:40 DAGMAN_ALWAYS_RUN_POST setting: False
+03/12/25 20:17:40 DAGMAN_CONDOR_SUBMIT_EXE setting: /usr/bin/condor_submit
+03/12/25 20:17:40 DAGMAN_USE_CONDOR_SUBMIT setting: True
+03/12/25 20:17:40 DAGMAN_ABORT_DUPLICATES setting: True
+03/12/25 20:17:40 DAGMAN_ABORT_ON_SCARY_SUBMIT setting: True
+03/12/25 20:17:40 DAGMAN_PENDING_REPORT_INTERVAL setting: 600
+03/12/25 20:17:40 DAGMAN_AUTO_RESCUE setting: True
+03/12/25 20:17:40 DAGMAN_MAX_RESCUE_NUM setting: 100
+03/12/25 20:17:40 DAGMAN_WRITE_PARTIAL_RESCUE setting: True
+03/12/25 20:17:40 DAGMAN_DEFAULT_NODE_LOG setting: @(DAG_DIR)/@(DAG_FILE).nodes.log
+03/12/25 20:17:40 DAGMAN_GENERATE_SUBDAG_SUBMITS setting: True
+03/12/25 20:17:40 DAGMAN_MAX_JOB_HOLDS setting: 100
+03/12/25 20:17:40 DAGMAN_HOLD_CLAIM_TIME setting: 20
+03/12/25 20:17:40 ALL_DEBUG setting: 
+03/12/25 20:17:40 DAGMAN_DEBUG setting: 
+03/12/25 20:17:40 DAGMAN_SUPPRESS_JOB_LOGS setting: False
+03/12/25 20:17:40 DAGMAN_REMOVE_NODE_JOBS setting: True
+03/12/25 20:17:40 DAGMAN will adjust edges after parsing
+03/12/25 20:17:40 argv[0] == "condor_scheduniv_exec.227010052.0"
+03/12/25 20:17:40 argv[1] == "-Lockfile"
+03/12/25 20:17:40 argv[2] == "22803_0000000-0019999_multiplicities_flavor.dag.lock"
+03/12/25 20:17:40 argv[3] == "-AutoRescue"
+03/12/25 20:17:40 argv[4] == "1"
+03/12/25 20:17:40 argv[5] == "-DoRescueFrom"
+03/12/25 20:17:40 argv[6] == "0"
+03/12/25 20:17:40 argv[7] == "-Dag"
+03/12/25 20:17:40 argv[8] == "22803_0000000-0019999_multiplicities_flavor.dag"
+03/12/25 20:17:40 argv[9] == "-Suppress_notification"
+03/12/25 20:17:40 argv[10] == "-CsdVersion"
+03/12/25 20:17:40 argv[11] == "$CondorVersion: 8.9.11 Dec 28 2020 BuildID: 526068 PackageID: 8.9.11-1 $"
+03/12/25 20:17:40 argv[12] == "-Dagman"
+03/12/25 20:17:40 argv[13] == "/usr/bin/condor_dagman"
+03/12/25 20:17:40 Can't open directory "/etc/condor/passwords.d" as PRIV_ROOT, errno: 13 (Permission denied)
+03/12/25 20:17:40 Can't open directory "/etc/condor/passwords.d" as PRIV_ROOT, errno: 13 (Permission denied)
+03/12/25 20:17:40 Workflow batch-id: <227010052.0>
+03/12/25 20:17:40 Workflow batch-name: <22803_0000000-0019999_multiplicities_flavor.dag+227010052>
+03/12/25 20:17:40 Workflow accounting_group: <>
+03/12/25 20:17:40 Workflow accounting_group_user: <>
+03/12/25 20:17:40 Warning: failed to get attribute DAGNodeName
+03/12/25 20:17:40 DAGMAN_LOG_ON_NFS_IS_ERROR setting: False
+03/12/25 20:17:40 Default node log file is: </home/zrechav/SelfVeto_Correlation_Tables/scripts/multiplicity_mapping/dags/./22803_0000000-0019999_multiplicities_flavor.dag.nodes.log>
+03/12/25 20:17:40 DAG Lockfile will be written to 22803_0000000-0019999_multiplicities_flavor.dag.lock
+03/12/25 20:17:40 DAG Input file is 22803_0000000-0019999_multiplicities_flavor.dag
+03/12/25 20:17:41 Parsing 1 dagfiles
+03/12/25 20:17:41 Parsing 22803_0000000-0019999_multiplicities_flavor.dag ...
+03/12/25 20:17:41 Adjusting edges
+03/12/25 20:17:41 Dag contains 1 total jobs
+03/12/25 20:17:41 Bootstrapping...
+03/12/25 20:17:41 Number of pre-completed nodes: 0
+03/12/25 20:17:41 MultiLogFiles: truncating log file /home/zrechav/SelfVeto_Correlation_Tables/scripts/multiplicity_mapping/dags/./22803_0000000-0019999_multiplicities_flavor.dag.nodes.log
+03/12/25 20:17:41 DAG status: 0 (DAG_STATUS_OK)
+03/12/25 20:17:41 Of 1 nodes total:
+03/12/25 20:17:41  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+03/12/25 20:17:41   ===     ===      ===     ===     ===        ===      ===
+03/12/25 20:17:41     0       0        0       0       1          0        0
+03/12/25 20:17:41 0 job proc(s) currently held
+03/12/25 20:17:41 DAGMan Runtime Statistics: [ EventCycleTimeCount = 0.0; EventCycleTimeSum = 0.0; LogProcessCycleTimeCount = 0.0; LogProcessCycleTimeSum = 0.0; SleepCycleTimeCount = 0.0; SleepCycleTimeSum = 0.0; SubmitCycleTimeCount = 0.0; SubmitCycleTimeSum = 0.0; ]
+03/12/25 20:17:41 Registering condor_event_timer...
+03/12/25 20:17:42 Sleeping for 1 s (DAGMAN_SUBMIT_DELAY) to throttle submissions...
+03/12/25 20:17:43 Submitting HTCondor Node multiplicity job(s)...
+03/12/25 20:17:43 Adding a DAGMan workflow log /home/zrechav/SelfVeto_Correlation_Tables/scripts/multiplicity_mapping/dags/./22803_0000000-0019999_multiplicities_flavor.dag.nodes.log
+03/12/25 20:17:43 Masking the events recorded in the DAGMAN workflow log
+03/12/25 20:17:43 Mask for workflow log is 0,1,2,4,5,7,9,10,11,12,13,16,17,24,27,35,36
+03/12/25 20:17:43 submitting: /usr/bin/condor_submit -a dag_node_name' '=' 'multiplicity -a +DAGManJobId' '=' '227010052 -a DAGManJobId' '=' '227010052 -batch-name 22803_0000000-0019999_multiplicities_flavor.dag+227010052 -batch-id 227010052.0 -a submit_event_notes' '=' 'DAG' 'Node:' 'multiplicity -a dagman_log' '=' '/home/zrechav/SelfVeto_Correlation_Tables/scripts/multiplicity_mapping/dags/./22803_0000000-0019999_multiplicities_flavor.dag.nodes.log -a +DAGManNodesMask' '=' '"0,1,2,4,5,7,9,10,11,12,13,16,17,24,27,35,36" -a JOB=multiplicity -a infile' '=' '/data/user/zrechav/compiled_hdf5s/airshowered_corsika/correlation/22803_0000000-0019999_correlated.hdf5 -a DAG_STATUS' '=' '0 -a FAILED_COUNT' '=' '0 -a notification' '=' 'never -a +DAGParentNodeNames' '=' '"" /home/zrechav/SelfVeto_Correlation_Tables/scripts/multiplicity_mapping/MultiplicityHistograms_Flavor.sub
+03/12/25 20:17:43 From submit: Submitting job(s).
+03/12/25 20:17:43 From submit: 1 job(s) submitted to cluster 227010238.
+03/12/25 20:17:43 From submit: WARNING: the line 'JOB = multiplicity' was unused by condor_submit. Is it a typo?
+03/12/25 20:17:43 	assigned HTCondor ID (227010238.0.0)
+03/12/25 20:17:43 Just submitted 1 job this cycle...
+03/12/25 20:17:43 DAG status: 0 (DAG_STATUS_OK)
+03/12/25 20:17:43 Of 1 nodes total:
+03/12/25 20:17:43  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+03/12/25 20:17:43   ===     ===      ===     ===     ===        ===      ===
+03/12/25 20:17:43     0       0        1       0       0          0        0
+03/12/25 20:17:43 0 job proc(s) currently held
+03/12/25 20:17:43 DAGMan Runtime Statistics: [ EventCycleTimeCount = 0.0; EventCycleTimeSum = 0.0; LogProcessCycleTimeCount = 0.0; LogProcessCycleTimeSum = 0.0; SleepCycleTimeCount = 0.0; SleepCycleTimeSum = 0.0; SubmitCycleTimeAvg = 1.303436040878296; SubmitCycleTimeCount = 1.0; SubmitCycleTimeMax = 1.303436040878296; SubmitCycleTimeMin = 1.303436040878296; SubmitCycleTimeStd = 1.303436040878296; SubmitCycleTimeSum = 1.303436040878296; ]
+03/12/25 20:17:48 Currently monitoring 1 HTCondor log file(s)
+03/12/25 20:17:48 Reassigning the id of job multiplicity from (227010238.0.0) to (227010238.0.0)
+03/12/25 20:17:48 Event: ULOG_SUBMIT for HTCondor Node multiplicity (227010238.0.0) {03/12/25 20:17:43}
+03/12/25 20:17:48 Number of idle job procs: 1
+03/12/25 20:27:48 600 seconds since last log event
+03/12/25 20:27:48 Pending DAG nodes:
+03/12/25 20:27:48   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 20:37:49 1201 seconds since last log event
+03/12/25 20:37:49 Pending DAG nodes:
+03/12/25 20:37:49   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 20:39:07 Currently monitoring 1 HTCondor log file(s)
+03/12/25 20:39:07 Event: ULOG_EXECUTE for HTCondor Node multiplicity (227010238.0.0) {03/12/25 20:39:06}
+03/12/25 20:39:07 Number of idle job procs: 0
+03/12/25 20:49:08 601 seconds since last log event
+03/12/25 20:49:08 Pending DAG nodes:
+03/12/25 20:49:08   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 20:59:08 1201 seconds since last log event
+03/12/25 20:59:08 Pending DAG nodes:
+03/12/25 20:59:08   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 21:09:09 1802 seconds since last log event
+03/12/25 21:09:09 Pending DAG nodes:
+03/12/25 21:09:09   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 21:19:10 2403 seconds since last log event
+03/12/25 21:19:10 Pending DAG nodes:
+03/12/25 21:19:10   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 21:29:10 3003 seconds since last log event
+03/12/25 21:29:10 Pending DAG nodes:
+03/12/25 21:29:10   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 21:39:11 3604 seconds since last log event
+03/12/25 21:39:11 Pending DAG nodes:
+03/12/25 21:39:11   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 21:49:12 4205 seconds since last log event
+03/12/25 21:49:12 Pending DAG nodes:
+03/12/25 21:49:12   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 21:59:12 4805 seconds since last log event
+03/12/25 21:59:12 Pending DAG nodes:
+03/12/25 21:59:12   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 22:09:13 5406 seconds since last log event
+03/12/25 22:09:13 Pending DAG nodes:
+03/12/25 22:09:13   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 22:19:16 6009 seconds since last log event
+03/12/25 22:19:16 Pending DAG nodes:
+03/12/25 22:19:16   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 22:29:17 6610 seconds since last log event
+03/12/25 22:29:17 Pending DAG nodes:
+03/12/25 22:29:17   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 22:39:18 7211 seconds since last log event
+03/12/25 22:39:18 Pending DAG nodes:
+03/12/25 22:39:18   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 22:49:19 7812 seconds since last log event
+03/12/25 22:49:19 Pending DAG nodes:
+03/12/25 22:49:19   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 22:59:19 8412 seconds since last log event
+03/12/25 22:59:19 Pending DAG nodes:
+03/12/25 22:59:19   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 23:09:20 9013 seconds since last log event
+03/12/25 23:09:20 Pending DAG nodes:
+03/12/25 23:09:20   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 23:19:21 9614 seconds since last log event
+03/12/25 23:19:21 Pending DAG nodes:
+03/12/25 23:19:21   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 23:29:22 10215 seconds since last log event
+03/12/25 23:29:22 Pending DAG nodes:
+03/12/25 23:29:22   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 23:39:22 10815 seconds since last log event
+03/12/25 23:39:22 Pending DAG nodes:
+03/12/25 23:39:22   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 23:49:23 11416 seconds since last log event
+03/12/25 23:49:23 Pending DAG nodes:
+03/12/25 23:49:23   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/12/25 23:59:23 12016 seconds since last log event
+03/12/25 23:59:23 Pending DAG nodes:
+03/12/25 23:59:23   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 00:09:23 12616 seconds since last log event
+03/13/25 00:09:23 Pending DAG nodes:
+03/13/25 00:09:23   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 00:19:23 13216 seconds since last log event
+03/13/25 00:19:23 Pending DAG nodes:
+03/13/25 00:19:23   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 00:29:24 13817 seconds since last log event
+03/13/25 00:29:24 Pending DAG nodes:
+03/13/25 00:29:24   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 00:39:25 14418 seconds since last log event
+03/13/25 00:39:25 Pending DAG nodes:
+03/13/25 00:39:25   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 00:49:25 15018 seconds since last log event
+03/13/25 00:49:25 Pending DAG nodes:
+03/13/25 00:49:25   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 00:59:26 15619 seconds since last log event
+03/13/25 00:59:26 Pending DAG nodes:
+03/13/25 00:59:26   Node multiplicity, HTCondor ID 227010238, status STATUS_SUBMITTED
+03/13/25 01:04:26 Currently monitoring 1 HTCondor log file(s)
+03/13/25 01:04:26 Event: ULOG_JOB_TERMINATED for HTCondor Node multiplicity (227010238.0.0) {03/13/25 01:04:25}
+03/13/25 01:04:26 Number of idle job procs: 0
+03/13/25 01:04:26 Node multiplicity job proc (227010238.0.0) completed successfully.
+03/13/25 01:04:26 Node multiplicity job completed
+03/13/25 01:04:26 DAG status: 0 (DAG_STATUS_OK)
+03/13/25 01:04:26 Of 1 nodes total:
+03/13/25 01:04:26  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+03/13/25 01:04:26   ===     ===      ===     ===     ===        ===      ===
+03/13/25 01:04:26     1       0        0       0       0          0        0
+03/13/25 01:04:26 0 job proc(s) currently held
+03/13/25 01:04:26 DAGMan Runtime Statistics: [ EventCycleTimeAvg = 0.04431816151643528; EventCycleTimeCount = 3338.0; EventCycleTimeMax = 119.5374598503113; EventCycleTimeMin = 1.883506774902344E-05; EventCycleTimeStd = 2.07666927223354; EventCycleTimeSum = 147.934023141861; LogProcessCycleTimeAvg = 0.0005346139272054037; LogProcessCycleTimeCount = 3.0; LogProcessCycleTimeMax = 0.0009388923645019531; LogProcessCycleTimeMin = 0.0002069473266601562; LogProcessCycleTimeStd = 0.0003719380523059095; LogProcessCycleTimeSum = 0.001603841781616211; SleepCycleTimeAvg = 5.109959379508154; SleepCycleTimeCount = 3338.0; SleepCycleTimeMax = 145.4618279933929; SleepCycleTimeMin = 4.037528038024902; SleepCycleTimeStd = 3.376732954091354; SleepCycleTimeSum = 17057.04440879822; SubmitCycleTimeAvg = 0.001273283739938248; SubmitCycleTimeCount = 3339.0; SubmitCycleTimeMax = 1.303436040878296; SubmitCycleTimeMin = 5.960464477539062E-06; SubmitCycleTimeStd = 0.02513090947716133; SubmitCycleTimeSum = 4.251494407653809; ]
+03/13/25 01:04:26 All jobs Completed!
+03/13/25 01:04:26 Note: 0 total job deferrals because of -MaxJobs limit (0)
+03/13/25 01:04:26 Note: 0 total job deferrals because of -MaxIdle limit (1000)
+03/13/25 01:04:26 Note: 0 total job deferrals because of node category throttles
+03/13/25 01:04:26 Note: 0 total PRE script deferrals because of -MaxPre limit (20) or DEFER
+03/13/25 01:04:26 Note: 0 total POST script deferrals because of -MaxPost limit (20) or DEFER
+03/13/25 01:04:26 Note: 0 total HOLD script deferrals because of -MaxHold limit (20) or DEFER
+03/13/25 01:04:26 DAG status: 0 (DAG_STATUS_OK)
+03/13/25 01:04:26 Of 1 nodes total:
+03/13/25 01:04:26  Done     Pre   Queued    Post   Ready   Un-Ready   Failed
+03/13/25 01:04:26   ===     ===      ===     ===     ===        ===      ===
+03/13/25 01:04:26     1       0        0       0       0          0        0
+03/13/25 01:04:26 0 job proc(s) currently held
+03/13/25 01:04:26 DAGMan Runtime Statistics: [ EventCycleTimeAvg = 0.04431816151643528; EventCycleTimeCount = 3338.0; EventCycleTimeMax = 119.5374598503113; EventCycleTimeMin = 1.883506774902344E-05; EventCycleTimeStd = 2.07666927223354; EventCycleTimeSum = 147.934023141861; LogProcessCycleTimeAvg = 0.0005346139272054037; LogProcessCycleTimeCount = 3.0; LogProcessCycleTimeMax = 0.0009388923645019531; LogProcessCycleTimeMin = 0.0002069473266601562; LogProcessCycleTimeStd = 0.0003719380523059095; LogProcessCycleTimeSum = 0.001603841781616211; SleepCycleTimeAvg = 5.109959379508154; SleepCycleTimeCount = 3338.0; SleepCycleTimeMax = 145.4618279933929; SleepCycleTimeMin = 4.037528038024902; SleepCycleTimeStd = 3.376732954091354; SleepCycleTimeSum = 17057.04440879822; SubmitCycleTimeAvg = 0.001273283739938248; SubmitCycleTimeCount = 3339.0; SubmitCycleTimeMax = 1.303436040878296; SubmitCycleTimeMin = 5.960464477539062E-06; SubmitCycleTimeStd = 0.02513090947716133; SubmitCycleTimeSum = 4.251494407653809; ]
+03/13/25 01:04:27 Wrote metrics file 22803_0000000-0019999_multiplicities_flavor.dag.metrics.
+03/13/25 01:04:27 DAGMan Runtime Statistics: [ EventCycleTimeAvg = 0.04431816151643528; EventCycleTimeCount = 3338.0; EventCycleTimeMax = 119.5374598503113; EventCycleTimeMin = 1.883506774902344E-05; EventCycleTimeStd = 2.07666927223354; EventCycleTimeSum = 147.934023141861; LogProcessCycleTimeAvg = 0.0005346139272054037; LogProcessCycleTimeCount = 3.0; LogProcessCycleTimeMax = 0.0009388923645019531; LogProcessCycleTimeMin = 0.0002069473266601562; LogProcessCycleTimeStd = 0.0003719380523059095; LogProcessCycleTimeSum = 0.001603841781616211; SleepCycleTimeAvg = 5.109959379508154; SleepCycleTimeCount = 3338.0; SleepCycleTimeMax = 145.4618279933929; SleepCycleTimeMin = 4.037528038024902; SleepCycleTimeStd = 3.376732954091354; SleepCycleTimeSum = 17057.04440879822; SubmitCycleTimeAvg = 0.001273283739938248; SubmitCycleTimeCount = 3339.0; SubmitCycleTimeMax = 1.303436040878296; SubmitCycleTimeMin = 5.960464477539062E-06; SubmitCycleTimeStd = 0.02513090947716133; SubmitCycleTimeSum = 4.251494407653809; ]
+03/13/25 01:04:27 **** condor_scheduniv_exec.227010052.0 (condor_DAGMAN) pid 129356 EXITING WITH STATUS 0

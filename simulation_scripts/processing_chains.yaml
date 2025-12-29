@@ -1,0 +1,249 @@
+muongun_general_2012_pass2_distance_split:
+  default_config: configs/default_muongun_general.yaml
+  job_template: job_templates/general_py2-v3.0.1.sh
+  steps:
+    0: step_0_muongun_general
+    1: step_1_general_photon_propagation
+    2: step_2_2012_detector_simulation
+    3: step_3_2012_L1
+    4: step_4_2012_L2
+    5: step_5_2012_muon_L3_py2_v3_0_1
+    11: step_1_general_photon_propagation
+    12: step_2_pass2_detector_simulation
+    13: step_3_pass2_L1
+    14: step_4_pass2_L2
+
+muongun_floodlight_2012_pass2_distance_split:
+  default_config: configs/default_muongun_floodlight_2012_pass2.yaml
+  job_template: job_templates/muongun_general_template.sh
+  steps:
+    0: step_0_muongun_floodlight
+    1: step_1_general_photon_propagation
+    2: step_2_pass2_detector_simulation
+    3: step_3_pass2_L1
+    4: step_4_pass2_L2
+    5: step_5_pass2_muon_L3
+    11: step_1_general_photon_propagation
+    12: step_2_2012_detector_simulation
+    13: step_3_2012_L1
+    14: step_4_2012_L2
+    15: step_5_2012_muon_L3
+
+
+double_pulse_resimulations:
+  default_config: configs/default_double_pulse_resimulation.yaml
+  job_template: job_templates/resimulation_general_template.sh
+  steps:
+    0: step_0_double_pulse_resimulation
+    1: step_1_general_photon_propagation
+    2: step_2_pass2_detector_simulation
+    3: step_3_pass2_L1
+    4: step_4_pass2_L2
+    5: step_5_pass2_double_pulse_reco
+    11: step_1_general_photon_propagation
+    12: step_2_2012_detector_simulation
+    13: step_3_2012_L1
+    14: step_4_2012_L2
+    15: step_5_2012_muon_L3
+
+
+nugen_2012_pass2_distance_split:
+  default_config: configs/default_nugen_2012_pass2.yaml
+  job_template: job_templates/nugen_general_template.sh
+  steps:
+    0: step_0_nugen
+    1: step_1_general_photon_propagation
+    2: step_2_pass2_detector_simulation
+    3: step_3_pass2_L1
+    4: step_4_pass2_L2
+    5: step_5_pass2_2017OnlineL2
+    11: step_1_general_photon_propagation
+    12: step_2_2012_detector_simulation
+    13: step_3_2012_L1
+    14: step_4_2012_L2
+    15: step_5_2012_2017OnlineL2
+
+nugen_snowstorm:
+  default_config: configs/default_nugen_snowstorm.yaml
+  job_template: job_templates/py3-v4.3.0.sh
+  job_templates:
+    5: job_templates/py3-v4.0.1__diffuse_numu.sh
+  steps:
+    0: step_0_nugen_py3_v4_3_0
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_L1_py3_v4_3_0
+    4: step_4_pass2_L2_py3_v4_3_0
+    5: step_5_final_level_numu
+
+nugen_snowstorm_proposalstorm:
+  default_config: configs/default_nugen_snowstorm.yaml
+  job_template: job_templates/py3-v4.3.0.sh
+  job_templates:
+    5: job_templates/py3-v4.0.1__diffuse_numu.sh
+  steps:
+    0: step_0_nugen_proposal_storm
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_L1_py3_v4_3_0
+    4: step_4_pass2_L2_py3_v4_3_0
+    5: step_5_final_level_numu
+
+muon_resimulation:
+  default_config: configs/default_muon_resimulation.yaml
+  job_template: job_templates/nugen_general_template.sh
+  steps:
+    0: step_0_muon_resimulation
+    1: step_1_general_photon_propagation
+    2: step_2_pass2_detector_simulation
+    3: step_3_pass2_L1
+    4: step_4_pass2_L2
+    5: step_5_pass2_2017OnlineL2
+    11: step_1_general_photon_propagation
+    12: step_2_2012_detector_simulation
+    13: step_3_2012_L1
+    14: step_4_2012_L2
+    15: step_5_2012_2017OnlineL2
+
+cascade_simulation:
+  default_config: configs/default_cascade_simulation.yaml
+  job_template: job_templates/general_py2-v3.0.1.sh
+  job_templates:
+    1: job_templates/py2-v3.0.1.sh
+    2: job_templates/py2-v3.0.1.sh
+  steps:
+    0: step_0_cascade_simulation
+    1: step_1_general_photon_propagation_py2_v3_0_1
+    2: step_2_pass2_detector_simulation_py2_v3_0_1
+    3: step_3_pass2_get_pulses
+    13: step_3_pass2_get_pulses_no_merging
+    23: step_3_pass2_L1
+    24: step_4_pass2_L2
+    25: step_5_pass2_2017OnlineL2
+    32: step_2_2012_detector_simulation
+    33: step_3_2012_L1
+    34: step_4_2012_L2
+    35: step_5_2012_2017OnlineL2
+    43: step_3_pass2_get_mc_pulses
+
+cascade_snowstorm:
+  default_config: configs/default_cascade_snowstorm.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_cascade_simulation_py3_v4_1_0
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+cascade_ppc:
+  default_config: configs/default_cascade_ppc.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_cascade_simulation_py3_v4_1_0
+    1: step_1_ppc_photon_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+multi_cascade_injection_snowstorm:
+  default_config: configs/default_multi_cascade_simulation_snowstorm.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_multi_cascade_simulation
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+neutrino_injection_snowstorm:
+  default_config: configs/default_neutrino_simulation_snowstorm.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_neutrino_simulation
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+neutrino_injection_ppc:
+  default_config: configs/default_neutrino_simulation_ppc.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_neutrino_simulation
+    1: step_1_ppc_photon_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+atmospheric_neutrinos:
+  default_config: configs/default_nugen_snowstorm.yaml
+  job_template: job_templates/py3-v4.3.0.sh
+  job_templates:
+    5: job_templates/py3-v4.0.1__diffuse_numu.sh
+  steps:
+    0: step_0_inject_veto_muons
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_L1_py3_v4_3_0
+    4: step_4_pass2_L2_py3_v4_3_0
+    5: step_5_final_level_numu
+
+event_import_snowstorm:
+  default_config: configs/default_cascade_snowstorm.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_import_events
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+event_import_ppc:
+  default_config: configs/default_cascade_ppc.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_import_events
+    1: step_1_ppc_photon_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_get_pulses_py3_v4_1_0
+    13: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    23: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+biased_muongun:
+  default_config: configs/default_biased_muongun.yaml
+  job_template: job_templates/py3-v4.1.0.sh
+  steps:
+    0: step_0_biased_muongun
+    1: step_1_snowstorm_propagation
+    2: step_2_snowstorm_detector_simulation
+    3: step_3_pass2_L1_py3_v4_1_0
+    4: step_4_pass2_L2_py3_v4_1_0
+    13: step_3_pass2_get_pulses_py3_v4_1_0
+    23: step_3_pass2_get_pulses_no_merging_py3_v4_1_0
+    33: step_3_pass2_get_mc_pulses_py3_v4_1_0
+
+nancy_2012_muon_l3:
+  default_config: configs/default_nancy_simulations_2012.yaml
+  job_template: job_templates/nancy_mc_2012_muon_L3.sh
+  steps:
+    2: level2
+    3: step_0_2012_muon_L3_nancy_mc
+
+    12: level2
+    13: step_0_2012_muon_L3_nancy_mc
+
+    22: level2
+    23: step_0_2012_muon_L3_nancy_mc
+
+    32: level2
+    33: step_0_2012_muon_L3_nancy_mc
+
+    42: level2
+    43: step_0_2012_muon_L3_nancy_mc

@@ -1,0 +1,6 @@
+JOB propogate_000000 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000000 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000000.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/0000000-0000999/airshowered_corsika_22803_000000" filenum="000000"
+Retry propogate_000000 2
+JOB propogate_000001 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000001 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000001.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/0000000-0000999/airshowered_corsika_22803_000001" filenum="000001"
+Retry propogate_000001 2

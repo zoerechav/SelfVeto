@@ -1,0 +1,30 @@
+JOB propogate_000000 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000000 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000000.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000000" filenum="000000"
+Retry propogate_000000 2
+JOB propogate_000001 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000001 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000001.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000001" filenum="000001"
+Retry propogate_000001 2
+JOB propogate_000002 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000002 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000002.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000002" filenum="000002"
+Retry propogate_000002 2
+JOB propogate_000003 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000003 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000003.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000003" filenum="000003"
+Retry propogate_000003 2
+JOB propogate_000004 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000004 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000004.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000004" filenum="000004"
+Retry propogate_000004 2
+JOB propogate_000005 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000005 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000005.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000005" filenum="000005"
+Retry propogate_000005 2
+JOB propogate_000006 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000006 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000006.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000006" filenum="000006"
+Retry propogate_000006 2
+JOB propogate_000007 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000007 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000007.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000007" filenum="000007"
+Retry propogate_000007 2
+JOB propogate_000008 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000008 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000008.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000008" filenum="000008"
+Retry propogate_000008 2
+JOB propogate_000009 /home/zrechav/SelfVeto_Correlation_Tables/scripts/air_shower_reader/AirShowerReader_NPX.sub
+VARS propogate_000009 infile="/data/sim/IceCube/2023/generated/CORSIKA-in-ice/22803/0000000-0000999/generated/corsika.022803.000009.i3.zst" outfile="/data/user/zrechav/airshowered_corsika/22803/random_test/airshowered_corsika_22803_000009" filenum="000009"
+Retry propogate_000009 2

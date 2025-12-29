@@ -1,0 +1,3 @@
+JOB weight_airshowered_corsika /home/zrechav/SelfVeto_Correlation_Tables/scripts/compiling/weight_airshowered_corsika.sub
+VARS weight_airshowered_corsika infile="/data/user/zrechav/compiled_hdf5s/airshowered_corsika/22803/22803_0004000-0004999_unweighted.hdf5" outfile="/data/user/zrechav/compiled_hdf5s/airshowered_corsika/22803/22803_0004000-0004999_weighted.hdf5" 
+Retry weight_airshowered_corsika 2

@@ -1,0 +1,3 @@
+JOB make_npy  /home/zrechav/SelfVeto_Correlation_Tables/scripts/picklemaking/npy_maker.sub
+VARS make_npy  infile="/data/ana/Diffuse/DNNCascades_Diffuse/Corsika_Temp/combined/22803_0000000-0019999_correlated.hdf5" 
+Retry make_npy  2

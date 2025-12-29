@@ -1,0 +1,23 @@
+-- NOTES: Corsika 20904 small sample table creation (precursor for new Corsika dataset)
+
+-- In the making of correlation tables, only if statistics are available were splined histograms also made. The decision was made to not spline 3D and 4D histograms because many linearly splines were statistically unreliable or impossible to calculate -- although the code is available to use if more statistics are made available in the future.
+
+-- Update: 1 April 2024
+Splining scripts are not currently being used for the existing binning. Future investigations into binning optimizations should be performed
+Binning as of this Update
+
+E_nu_bins: "np.concatenate((np.logspace(1,2,1),np.logspace(2,6,8+1)))"
+nu_bin_centers: "np.sqrt(E_nu_bins[:-1] * E_nu_bins[1:])"
+
+
+E_mu_bins: "((np.logspace(1,6,8+1)))"
+mu_bin_centers: "np.sqrt(E_mu_bins[:-1] * E_mu_bins[1:])"
+
+gridpts_mu: "((np.logspace(1,6,8+1)))"
+gridpts_nu: "np.concatenate((np.logspace(1,2,1),np.logspace(2,6,8+1)))"
+
+flavours: ['NuE','NuMu']
+angles: "np.linspace(0,1.0,6)"
+depths: "np.concatenate([np.linspace(1.40,2.0,2),np.linspace(2.1,2.5,2)])"
+
+mult_bins: "np.linspace(0,5,5+1)"
