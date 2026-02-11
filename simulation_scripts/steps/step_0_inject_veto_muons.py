@@ -15,7 +15,6 @@ from utils import create_random_services, get_run_folder
 from resources import geometry
 from resources.import_events import ImportEvents
 from resources.biased_simulation import BaseSimulationBias
-# from resources.veto_muon import InjectVetoMuons, CombineMCTrees
 from resources.veto_muonbundles import InjectVetoMuons, CombineMCTrees
 from scipy.spatial import ConvexHull
 

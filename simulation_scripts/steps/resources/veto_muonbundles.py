@@ -22,13 +22,13 @@ import traceback
 import pickle
 
 
-with open('/home/zrechav/SelfVeto_Correlation_Tables/SelfVeto_Correlation_Tables/scripts/config.yaml', 'r') as yaml_file:
+with open('/home/zrechav/SelfVeto/correlation_tables/scripts/config.yaml', 'r') as yaml_file:
     config = yaml.safe_load(yaml_file)
     
 gcd = config['gcd']
 
 angles_space = eval(config['angles'])
-nue_angles = eval(config['nue_angles'])
+nu_angles = eval(config['nue_angles'])
 numu_angles = eval(config['numu_angles'])
 depths = eval(config['depths'])
 flav_dict={}
@@ -495,23 +495,19 @@ class InjectVetoMuons(icetray.I3ConditionalModule):
         
         depth=np.around(depths[np.digitize(depth/1000,depths)-1],decimals=2)
         coszen = None
-        
-        
-        flavour == 'NuE' #### Hardcoded for TEST ######
-        
-        
-        
-        if flavour == 'NuMu':
-            coszen=np.around(angles_space[np.digitize(np.cos(primary.dir.zenith),numu_angles)-1],
-                             decimals=2)
-            if coszen == 1.0:
-                coszen = 0.8
-        if flavour == 'NuE':
-            coszen=np.around(angles_space[np.digitize(np.cos(primary.dir.zenith),nue_angles)-1],
-                             decimals=2)
-            if coszen == 1.0:
+        # if flavour == 'NuMu':
+        #     coszen=np.around(angles_space[np.digitize(np.cos(primary.dir.zenith),numu_angles)-1],
+        #                      decimals=2)
+        #     if coszen == 1.0:
+        #         coszen = 0.8
+        # if flavour == 'NuE':
+        #     coszen=np.around(angles_space[np.digitize(np.cos(primary.dir.zenith),nu_angles)-1],
+        #                      decimals=2)
+        #     if coszen == 1.0:
+        #         coszen = 0.85
+        coszen=np.around(nu_angles[np.digitize(np.cos(primary.dir.zenith),nu_angles)-1],decimals=2)
+        if coszen == 1.0:
                 coszen = 0.85
-        #coszen=np.around(angles_space[np.digitize(np.cos(primary.dir.zenith),angles_space)-1],decimals=2)
         print('coszen ',coszen)
         E_nu_bins=eval(config['E_nu_bins'])
         print('E_nu_bins ', E_nu_bins)
@@ -560,366 +556,221 @@ class InjectVetoMuons(icetray.I3ConditionalModule):
         return multiplicity,depth,binnedsample
         
     def _sample_bundle_energies(self,multiplicity,neutrino_energy,coszen,depth):
-        """Sample Energy of the injected Muon
+            """Sample Energy of the injected Muon
 
-        Returns
-        -------
-        double
-            The sampled energy
-        """
-        flavor = None
-        
-        flavour = 'NuE' #####Hardcode for TEST ######
-        
-        
-        
-        if flavour == 'NuMu':
-            flavor = 'numu'
-        if flavour == 'NuE':
-            flavor = 'nue'
-        E_nu_bins=eval(config['E_nu_bins'])
-        energy_index=np.digitize(neutrino_energy,E_nu_bins)-1
-        print('og energy index: ', energy_index)
-        
-        energy_index += 1 #off by one error
-        print('new energy index: ', energy_index)
-        depth_index=np.digitize(depth,depths)-1
-        depth_str = None
-        coszen_index=np.digitize(coszen,angles_space)
-        print(coszen)
-        inj_muon_energies=[]
-        if coszen<=0:
-            print('CosZen <0')
-            return inj_muon_energies,False
-        coszen=angles_space[np.digitize(coszen,angles_space)]
-        depth=depths[np.digitize(depth,depths)-1]
-        coszen=np.around(coszen,decimals=2)
-        depth=np.around(depth,decimals=2)
-        print('energy ', neutrino_energy)
-        print('energy index ', energy_index)
-        print('depth ', depth, depth_index)
-        print('coszen ',coszen, coszen_index)
-        
-        if depth_index == 0:
-            depth_str = 'top'
-        if depth_index == 1:
-            depth_str = 'middle'
-        if depth_index == 2:
-            depth_str = 'middle'
-        if depth_index == 3:
-            depth_str = 'bottom'
-        if depth_index == 4:
-            depth_str = 'bottom'
-        print(depth_str)
-        energysample=True
-        print('Bundle Energy Sampler')
-        try:
-            if multiplicity==1:
-                filename=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_one/muon1/{flavor}_one_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename)
-                
-                with open(filename,'rb') as f:
-                    histogram = pickle.load(f)
-                bins,prob,function = get_info(histogram)
-                print('bins:',bins)
-                print('prob:',prob)
-                prob_norm = prob/np.sum(prob) ##decimal cleaning
-                sample_energy = (np.random.choice(bins,p=prob_norm))
-                ##optional, to know the probability of the sampled energy
-                index = np.argmin(np.abs(bins-sample_energy))
-                sample_prob = prob_norm[index]
-                inj_muon_energies=[sample_energy]
-                
-            elif multiplicity==2:
-                filename1=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_two/muon1/{flavor}_two_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename1)
-                
-                with open(filename1,'rb') as f:
-                    histogram1 = pickle.load(f)
-                bins1,prob1,function1 = get_info(histogram1)
-                print('bins:',bins1)
-                print('prob:',prob1)
-                prob_norm1 = prob1/np.sum(prob1) ##decimal cleaning
-                sample_energy1 = (np.random.choice(bins1,p=prob_norm1))
-                ##optional, to know the probability of the sampled energy
-                index1 = np.argmin(np.abs(bins1-sample_energy1))
-                sample_prob1 = prob_norm1[index1]
-                #inj_muon_energies=[sample_energy]
-                filename2=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_two/muon2/{flavor}_two_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename2)
-                
-                with open(filename2,'rb') as f:
-                    histogram2 = pickle.load(f)
-                bins2,prob2,function2 = get_info(histogram2)
-                print('bins:',bins2)
-                print('prob:',prob2)
-                prob_norm2 = prob2/np.sum(prob2) ##decimal cleaning
-                sample_energy2 = (np.random.choice(bins2,p=prob_norm2))
-                ##optional, to know the probability of the sampled energy
-                index2 = np.argmin(np.abs(bins2-sample_energy2))
-                sample_prob2 = prob_norm2[index2]
-                
-                inj_muon_energies=[sample_energy1,sample_energy2]
-
-            elif multiplicity==3:
-                filename1=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_three/muon1/{flavor}_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename1)
-
-                with open(filename1,'rb') as f:
-                    histogram1 = pickle.load(f)
-                bins1,prob1,function1 = get_info(histogram1)
-                print('bins:',bins1)
-                print('prob:',prob1)
-                prob_norm1 = prob1/np.sum(prob1) ##decimal cleaning
-                sample_energy1 = (np.random.choice(bins1,p=prob_norm1))
-                ##optional, to know the probability of the sampled energy
-                index1 = np.argmin(np.abs(bins1-sample_energy1))
-                sample_prob1 = prob_norm1[index1]
-                #inj_muon_energies=[sample_energy]
-                filename2=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_three/muon2/{flavor}_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename2)
-                
-                with open(filename2,'rb') as f:
-                    histogram2 = pickle.load(f)
-                bins2,prob2,function2 = get_info(histogram2)
-                print('bins:',bins2)
-                print('prob:',prob2)
-                prob_norm2 = prob2/np.sum(prob2) ##decimal cleaning
-                sample_energy2 = (np.random.choice(bins2,p=prob_norm2))
-                ##optional, to know the probability of the sampled energy
-                index2 = np.argmin(np.abs(bins2-sample_energy2))
-                sample_prob2 = prob_norm2[index2]
-                #inj_muon_energies=[sample_energy]
-                filename3=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_three/muon3/{flavor}_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename3)
-                
-                with open(filename3,'rb') as f:
-                    histogram3 = pickle.load(f)
-                bins3,prob3,function3 = get_info(histogram3)
-                print('bins:',bins3)
-                print('prob:',prob3)
-                prob_norm3 = prob3/np.sum(prob3) ##decimal cleaning
-                sample_energy3 = (np.random.choice(bins3,p=prob_norm3))
-                ##optional, to know the probability of the sampled energy
-                index3 = np.argmin(np.abs(bins3-sample_energy3))
-                sample_prob3 = prob_norm3[index3]
-                
-                
-                inj_muon_energies=[sample_energy1,sample_energy2,sample_energy3]
-               
-        
-
-            elif multiplicity>=4:
-                filename1=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_four/muon1/{flavor}_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename1)
-
-                with open(filename1,'rb') as f:
-                    histogram1 = pickle.load(f)
-                bins1,prob1,function1 = get_info(histogram1)
-                print('bins:',bins1)
-                print('prob:',prob1)
-                prob_norm1 = prob1/np.sum(prob1) ##decimal cleaning
-                sample_energy1 = (np.random.choice(bins1,p=prob_norm1))
-                ##optional, to know the probability of the sampled energy
-                index1 = np.argmin(np.abs(bins1-sample_energy1))
-                sample_prob1 = prob_norm1[index1]
-                #inj_muon_energies=[sample_energy]
-                filename2=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_four/muon2/{flavor}_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename2)
-                
-                with open(filename2,'rb') as f:
-                    histogram2 = pickle.load(f)
-                bins2,prob2,function2 = get_info(histogram2)
-                print('bins:',bins2)
-                print('prob:',prob2)
-                prob_norm2 = prob2/np.sum(prob2) ##decimal cleaning
-                sample_energy2 = (np.random.choice(bins2,p=prob_norm2))
-                ##optional, to know the probability of the sampled energy
-                index2 = np.argmin(np.abs(bins2-sample_energy2))
-                sample_prob2 = prob_norm2[index2]
-                #inj_muon_energies=[sample_energy]
-                filename3=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_four/muon3/{flavor}_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename3)
-                
-                with open(filename3,'rb') as f:
-                    histogram3 = pickle.load(f)
-                bins3,prob3,function3 = get_info(histogram3)
-                print('bins:',bins3)
-                print('prob:',prob3)
-                prob_norm3 = prob3/np.sum(prob3) ##decimal cleaning
-                sample_energy3 = (np.random.choice(bins3,p=prob_norm3))
-                ##optional, to know the probability of the sampled energy
-                index3 = np.argmin(np.abs(bins3-sample_energy3))
-                sample_prob3 = prob_norm3[index3]
-                filename4=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_four/muon4/{flavor}_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-                print(filename4)
-                
-                with open(filename4,'rb') as f:
-                    histogram4 = pickle.load(f)
-                bins4,prob4,function4 = get_info(histogram4)
-                print('bins:',bins4)
-                print('prob:',prob4)
-                prob_norm4 = prob4/np.sum(prob4) ##decimal cleaning
-                sample_energy4 = (np.random.choice(bins4,p=prob_norm4))
-                ##optional, to know the probability of the sampled energy
-                index4 = np.argmin(np.abs(bins4-sample_energy4))
-                sample_prob4 = prob_norm4[index4]                
-                
-                
-                inj_muon_energies=[sample_energy1,sample_energy2,sample_energy3,sample_energy4]
-               
-
-        except Exception as e:
-            print(e)
-            print(traceback.print_exc())
-            print('THE DEFAULT SAMPLER IS BEING USED!')
-            inj_muon_energies=default_sampler(multiplicity=multiplicity)
-            energysample=False
-
+            Returns
+            -------
+            double
+                The sampled energy
+            """
+            flavor = None
             
-        print('EnergySample',energysample)
-        return inj_muon_energies,energysample
-
-#     def _sample_bundle_energies(self, multiplicity, primary_nu_energy, coszen, depth):
-#         """Sample Energy of the injected Muon bundle with rejection sampling.
-#         """
-#         flavor = None
-        
-#         flavour == 'NuE' #### Hardcoded for TEST ######
-        
-        
-        
-#         if flavour == 'NuMu':
-#             flavor = 'numu'
-#         if flavour == 'NuE':
-#             flavor = 'nue'
-
-#         E_nu_bins = eval(config['E_nu_bins'])
-#         energy_index = np.digitize(primary_nu_energy, E_nu_bins) - 1
-#         energy_index += 1  # off-by-one correction
-
-#         depth_index = np.digitize(depth, depths) - 1
-#         coszen_index = np.digitize(coszen, angles_space)
-
-#         inj_muon_energies = []
-
-#         if coszen <= 0:
+            if flavour == 'NuMu':
+                flavor = 'numu'
+            if flavour == 'NuE':
+                flavor = 'nue'
+            E_nu_bins=eval(config['E_nu_bins'])
+            energy_index=np.digitize(neutrino_energy,E_nu_bins)-1
+            print('og energy index: ', energy_index)
             
-#             bundle_diagnostics = {
-#                 #"bundle_n_tries": 0.0,
-#                 "bundle_energy": 0.0,
-#                 "bundle_primary": float(primary_nu_energy),
-#                 "bundle_coszen": float(coszen),
-#                 "bundle_depth": float(depth),
-#             }
-#             return inj_muon_energies, False, bundle_diagnostics
+            energy_index += 1 #off by one error
+            print('new energy index: ', energy_index)
+            depth_index=np.digitize(depth,depths)-1
+            depth_str = None
+            coszen_index=np.digitize(coszen,nu_angles)
+            print(coszen)
+            inj_muon_energies=[]
+            if coszen<=0:
+                print('CosZen <0')
+                return inj_muon_energies,False
+            coszen=nu_angles[np.digitize(coszen,nu_angles)]
+            depth=depths[np.digitize(depth,depths)-1]
+            coszen=np.around(coszen,decimals=2)
+            depth=np.around(depth,decimals=2)
+            print('energy ', neutrino_energy)
+            print('energy index ', energy_index)
+            print('depth ', depth, depth_index)
+            print('coszen ',coszen, coszen_index)
+            
+            if depth_index == 0:
+                depth_str = 'top'
+            if depth_index == 1:
+                depth_str = 'middle'
+            if depth_index == 2:
+                depth_str = 'middle'
+            if depth_index == 3:
+                depth_str = 'bottom'
+            if depth_index == 4:
+                depth_str = 'bottom'
+            print(depth_str)
+            energysample=True
+            print('Bundle Energy Sampler')
+            try:
+                if multiplicity==1:
+                    filename=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_one/muon1/nu_one_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename)
+                    
+                    with open(filename,'rb') as f:
+                        histogram = pickle.load(f)
+                    bins,prob,function = get_info(histogram)
+                    print('bins:',bins)
+                    print('prob:',prob)
+                    prob_norm = prob/np.sum(prob) ##decimal cleaning
+                    sample_energy = (np.random.choice(bins,p=prob_norm))
+                    ##optional, to know the probability of the sampled energy
+                    index = np.argmin(np.abs(bins-sample_energy))
+                    sample_prob = prob_norm[index]
+                    inj_muon_energies=[sample_energy]
+                    
+                elif multiplicity==2:
+                    filename1=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_two/muon1/nu_two_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename1)
+                    
+                    with open(filename1,'rb') as f:
+                        histogram1 = pickle.load(f)
+                    bins1,prob1,function1 = get_info(histogram1)
+                    print('bins:',bins1)
+                    print('prob:',prob1)
+                    prob_norm1 = prob1/np.sum(prob1) ##decimal cleaning
+                    sample_energy1 = (np.random.choice(bins1,p=prob_norm1))
+                    ##optional, to know the probability of the sampled energy
+                    index1 = np.argmin(np.abs(bins1-sample_energy1))
+                    sample_prob1 = prob_norm1[index1]
+                    #inj_muon_energies=[sample_energy]
+                    filename2=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_two/muon2/nu_two_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename2)
+                    
+                    with open(filename2,'rb') as f:
+                        histogram2 = pickle.load(f)
+                    bins2,prob2,function2 = get_info(histogram2)
+                    print('bins:',bins2)
+                    print('prob:',prob2)
+                    prob_norm2 = prob2/np.sum(prob2) ##decimal cleaning
+                    sample_energy2 = (np.random.choice(bins2,p=prob_norm2))
+                    ##optional, to know the probability of the sampled energy
+                    index2 = np.argmin(np.abs(bins2-sample_energy2))
+                    sample_prob2 = prob_norm2[index2]
+                    
+                    inj_muon_energies=[sample_energy1,sample_energy2]
 
-#         coszen = angles_space[np.digitize(coszen, angles_space)]
-#         depth = depths[np.digitize(depth, depths) - 1]
-#         coszen = np.around(coszen, decimals=2)
-#         depth = np.around(depth, decimals=2)
+                elif multiplicity==3:
+                    filename1=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_three/muon1/nu_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename1)
 
-#         if depth_index == 0:
-#             depth_str = 'top'
-#         elif depth_index in [1, 2]:
-#             depth_str = 'middle'
-#         else:
-#             depth_str = 'bottom'
+                    with open(filename1,'rb') as f:
+                        histogram1 = pickle.load(f)
+                    bins1,prob1,function1 = get_info(histogram1)
+                    print('bins:',bins1)
+                    print('prob:',prob1)
+                    prob_norm1 = prob1/np.sum(prob1) ##decimal cleaning
+                    sample_energy1 = (np.random.choice(bins1,p=prob_norm1))
+                    ##optional, to know the probability of the sampled energy
+                    index1 = np.argmin(np.abs(bins1-sample_energy1))
+                    sample_prob1 = prob_norm1[index1]
+                    #inj_muon_energies=[sample_energy]
+                    filename2=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_three/muon2/nu_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename2)
+                    
+                    with open(filename2,'rb') as f:
+                        histogram2 = pickle.load(f)
+                    bins2,prob2,function2 = get_info(histogram2)
+                    print('bins:',bins2)
+                    print('prob:',prob2)
+                    prob_norm2 = prob2/np.sum(prob2) ##decimal cleaning
+                    sample_energy2 = (np.random.choice(bins2,p=prob_norm2))
+                    ##optional, to know the probability of the sampled energy
+                    index2 = np.argmin(np.abs(bins2-sample_energy2))
+                    sample_prob2 = prob_norm2[index2]
+                    #inj_muon_energies=[sample_energy]
+                    filename3=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_three/muon3/nu_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename3)
+                    
+                    with open(filename3,'rb') as f:
+                        histogram3 = pickle.load(f)
+                    bins3,prob3,function3 = get_info(histogram3)
+                    print('bins:',bins3)
+                    print('prob:',prob3)
+                    prob_norm3 = prob3/np.sum(prob3) ##decimal cleaning
+                    sample_energy3 = (np.random.choice(bins3,p=prob_norm3))
+                    ##optional, to know the probability of the sampled energy
+                    index3 = np.argmin(np.abs(bins3-sample_energy3))
+                    sample_prob3 = prob_norm3[index3]
+                    
+                    
+                    inj_muon_energies=[sample_energy1,sample_energy2,sample_energy3]
+                
+            
 
-#         energysample = True
+                elif multiplicity>=4:
+                    filename1=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_four/muon1/nu_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename1)
 
-#         #MAX_TRIES = 1
-#         #n_tries = 0
+                    with open(filename1,'rb') as f:
+                        histogram1 = pickle.load(f)
+                    bins1,prob1,function1 = get_info(histogram1)
+                    print('bins:',bins1)
+                    print('prob:',prob1)
+                    prob_norm1 = prob1/np.sum(prob1) ##decimal cleaning
+                    sample_energy1 = (np.random.choice(bins1,p=prob_norm1))
+                    ##optional, to know the probability of the sampled energy
+                    index1 = np.argmin(np.abs(bins1-sample_energy1))
+                    sample_prob1 = prob_norm1[index1]
+                    #inj_muon_energies=[sample_energy]
+                    filename2=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_four/muon2/nu_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename2)
+                    
+                    with open(filename2,'rb') as f:
+                        histogram2 = pickle.load(f)
+                    bins2,prob2,function2 = get_info(histogram2)
+                    print('bins:',bins2)
+                    print('prob:',prob2)
+                    prob_norm2 = prob2/np.sum(prob2) ##decimal cleaning
+                    sample_energy2 = (np.random.choice(bins2,p=prob_norm2))
+                    ##optional, to know the probability of the sampled energy
+                    index2 = np.argmin(np.abs(bins2-sample_energy2))
+                    sample_prob2 = prob_norm2[index2]
+                    #inj_muon_energies=[sample_energy]
+                    filename3=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_four/muon3/nu_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename3)
+                    
+                    with open(filename3,'rb') as f:
+                        histogram3 = pickle.load(f)
+                    bins3,prob3,function3 = get_info(histogram3)
+                    print('bins:',bins3)
+                    print('prob:',prob3)
+                    prob_norm3 = prob3/np.sum(prob3) ##decimal cleaning
+                    sample_energy3 = (np.random.choice(bins3,p=prob_norm3))
+                    ##optional, to know the probability of the sampled energy
+                    index3 = np.argmin(np.abs(bins3-sample_energy3))
+                    sample_prob3 = prob_norm3[index3]
+                    filename4=f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/use/nu/m_four/muon4/nu_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
+                    print(filename4)
+                    
+                    with open(filename4,'rb') as f:
+                        histogram4 = pickle.load(f)
+                    bins4,prob4,function4 = get_info(histogram4)
+                    print('bins:',bins4)
+                    print('prob:',prob4)
+                    prob_norm4 = prob4/np.sum(prob4) ##decimal cleaning
+                    sample_energy4 = (np.random.choice(bins4,p=prob_norm4))
+                    ##optional, to know the probability of the sampled energy
+                    index4 = np.argmin(np.abs(bins4-sample_energy4))
+                    sample_prob4 = prob_norm4[index4]                
+                    
+                    
+                    inj_muon_energies=[sample_energy1,sample_energy2,sample_energy3,sample_energy4]
+                
 
+            except Exception as e:
+                print(e)
+                print(traceback.print_exc())
+                print('THE DEFAULT SAMPLER IS BEING USED!')
+                inj_muon_energies=default_sampler(multiplicity=multiplicity)
+                energysample=False
 
-#         try:
-
-#             inj_muon_energies = []
-
-
-#             if multiplicity == 1:
-#                 filename = (
-#                     f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_one/muon1/{flavor}_one_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-#                 )
-#                 with open(filename, 'rb') as f:
-#                     histogram = pickle.load(f)
-
-#                 bins, prob, _ = get_info(histogram)
-#                 prob_norm = prob / np.sum(prob)
-#                 sample_energy = np.random.choice(bins, p=prob_norm)
-#                 inj_muon_energies = [sample_energy]
-
-#             elif multiplicity == 2:
-#                 energies = []
-#                 for i in [1, 2]:
-#                     filename = (
-#                         f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_two/muon{i}/{flavor}_two_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-#                     )
-#                     with open(filename, 'rb') as f:
-#                         histogram = pickle.load(f)
-
-#                     bins, prob, _ = get_info(histogram)
-#                     prob_norm = prob / np.sum(prob)
-#                     energies.append(np.random.choice(bins, p=prob_norm))
-
-#                 inj_muon_energies = energies
-
-#             elif multiplicity == 3:
-#                 energies = []
-#                 for i in [1, 2, 3]:
-#                     filename = (
-#                         f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_three/muon{i}/{flavor}_three_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-#                     )
-#                     with open(filename, 'rb') as f:
-#                         histogram = pickle.load(f)
-
-#                     bins, prob, _ = get_info(histogram)
-#                     prob_norm = prob / np.sum(prob)
-#                     energies.append(np.random.choice(bins, p=prob_norm))
-
-#                 inj_muon_energies = energies
-
-#             elif multiplicity >= 4:
-#                 energies = []
-#                 for i in [1, 2, 3, 4]:
-#                     filename = (
-#                         f'/data/user/zrechav/output_SelfVeto_Correlation_Tables/binning/fits/{flavor}/m_four/muon{i}/{flavor}_four_{depth_str}_nubin{energy_index}_zenbin{coszen_index}.pkl'
-#                     )
-#                     with open(filename, 'rb') as f:
-#                         histogram = pickle.load(f)
-
-#                     bins, prob, _ = get_info(histogram)
-#                     prob_norm = prob / np.sum(prob)
-#                     energies.append(np.random.choice(bins, p=prob_norm))
-
-#                 inj_muon_energies = energies
-
-#             total_mu_energy = np.sum(inj_muon_energies)
-#             bundle_diagnostics = {
-#                     #"bundle_n_tries": float(n_tries),
-#                     "bundle_energy": float(total_mu_energy),
-#                     "bundle_primary": float(primary_nu_energy),
-#                     "bundle_coszen": float(coszen),
-#                     "bundle_depth": float(depth),
-#                 }
-
-
-
-
-
-#             #if total_mu_energy <= primary_nu_energy:
-#              #   break  # ✅ accept
-#             # else: reject and resample
-
-#         except Exception as e:
-#             print(e)
-#             print(traceback.print_exc())
-#             print('THE DEFAULT SAMPLER IS BEING USED!')
-#             inj_muon_energies = default_sampler(multiplicity=multiplicity)
-#             energysample = False
-
-#         print('EnergySample:', energysample)
-#         return inj_muon_energies, energysample, bundle_diagnostics
+                
+            print('EnergySample',energysample)
+            return inj_muon_energies,energysample
 
 
     def _sample_energy(self):
@@ -1031,8 +882,6 @@ class InjectVetoMuons(icetray.I3ConditionalModule):
         print('Starting Sampler')
         inj_muon_energies,energysample=self._sample_bundle_energies(multiplicity,inj_energy,np.cos(inj_dir.zenith),depth)
 
-        #for key, val in bundle_diagnostics.items():
-        #    injectdict[key] = val
 
         #len(inj_muon_energies) is the injected multiplicity
         print('Energies',inj_muon_energies)
